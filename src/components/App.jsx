@@ -33,8 +33,9 @@ export class App extends Component {
   state = {
     articles: [],
     isLoading: false,
+    error: null,
   };
-
+/*
   async componentDidMount() {
     this.setState({ isLoading: true });
     const response = await axios.get('/search?query=react');
@@ -42,14 +43,35 @@ export class App extends Component {
       articles: response.data.hits,
       isLoading: false,
     });
+  }*/
+  async componentDidMount() {
+    this.setState({ isLoading: true });
+
+    try {
+      const response = await axios.get("/search?query=react");
+      this.setState({ articles: response.data.hits });
+    } catch (error) {
+      this.setState({ error });
+    } finally {
+      this.setState({ isLoading: false });
+    }
   }
 
   render() {
-    const { articles, isLoading} = this.state; 
+    const { articles, isLoading, error } = this.state;
+
     return (
       <div style={{ ...appStyles, backgroundColor: getRandomHexColor() }}>
-        {isLoading ? <p>Loading...</p> : <ArticleList articles={articles} />}
+        {error && <p>Whoops, something went wrong: {error.message}</p>}
+        {isLoading && <p>Loading...</p>}
+        {articles.length > 0 && <ArticleList articles={articles} />}
       </div>
     );
   }
 }
+
+/*
+<div style={{ ...appStyles, backgroundColor: getRandomHexColor() }}>
+        {isLoading ? <p>Loading...</p> : <ArticleList articles={articles} />}
+      </div>
+*/
