@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/goit-react-hack-news-http23/static/css/main.7acaea2f.css",
-    "main.js": "/goit-react-hack-news-http23/static/js/main.ee5ce3cd.js",
+    "main.js": "/goit-react-hack-news-http23/static/js/main.b44e65bb.js",
     "index.html": "/goit-react-hack-news-http23/index.html",
     "main.7acaea2f.css.map": "/goit-react-hack-news-http23/static/css/main.7acaea2f.css.map",
-    "main.ee5ce3cd.js.map": "/goit-react-hack-news-http23/static/js/main.ee5ce3cd.js.map"
+    "main.b44e65bb.js.map": "/goit-react-hack-news-http23/static/js/main.b44e65bb.js.map"
   },
   "entrypoints": [
     "static/css/main.7acaea2f.css",
-    "static/js/main.ee5ce3cd.js"
+    "static/js/main.b44e65bb.js"
   ]
 }
