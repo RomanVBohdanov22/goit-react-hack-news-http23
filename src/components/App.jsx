@@ -43,7 +43,7 @@ export class App extends Component {
     const { articles } = this.state;
     return (
       <div style={{ ...appStyles, backgroundColor: getRandomHexColor() }}>
-        articles.length > 0 ? <ArticleList articles={articles} /> : null
+        {articles.length > 0} ? <ArticleList articles={articles} /> : null
       </div>
     );
   }
