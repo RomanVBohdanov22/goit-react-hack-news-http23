@@ -1,8 +1,8 @@
-import React, { Component } from "react";
-import axios from "axios";
+import React, { Component } from 'react';
+import axios from 'axios';
 
 function getRandomHexColor() {
-  return `#${Math.floor((0.2+0.5*Math.random()) * 16777215).toString(16)}`;
+  return `#${Math.floor((0.2 + 0.5 * Math.random()) * 16777215).toString(16)}`;
 }
 
 const appStyles = {
@@ -15,7 +15,7 @@ const appStyles = {
   gap: '12px',
   color: '#010101',
 };
-axios.defaults.baseURL = "https://hn.algolia.com/api/v1";
+axios.defaults.baseURL = 'https://hn.algolia.com/api/v1';
 
 const ArticleList = ({ articles }) => (
   <ul>
@@ -32,21 +32,24 @@ const ArticleList = ({ articles }) => (
 export class App extends Component {
   state = {
     articles: [],
+    isLoading: false,
   };
 
   async componentDidMount() {
-    const response = await axios.get("/search?query=react");
-    this.setState({ articles: response.data.hits });
+    this.setState({ isLoading: true });
+    const response = await axios.get('/search?query=react');
+    this.setState({
+      articles: response.data.hits,
+      isLoading: false,
+    });
   }
 
   render() {
-    const { articles } = this.state;
+    const { articles, isLoading} = this.state; 
     return (
       <div style={{ ...appStyles, backgroundColor: getRandomHexColor() }}>
-        {articles.length > 0} ? <ArticleList articles={articles} /> : null
+        {isLoading ? <p>Loading...</p> : <ArticleList articles={articles} />}
       </div>
     );
   }
 }
-
-
